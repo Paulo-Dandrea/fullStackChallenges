@@ -6,4 +6,4 @@ if (num1 > 0) {
     console.log ('zero');
 }else {
     console.log ('negative');
-}
+}   
