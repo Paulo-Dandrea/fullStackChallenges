@@ -23,6 +23,3 @@ console.log ( maiorNumero );
 
 
 
-// Descubra quantos valores ímpares existem no array e imprima o resultado. Caso não exista nenhum, imprima a mensagem: “nenhum valor ímpar encontrado”;
-
-// Utilizando for, descubra qual o menor valor contido no array e imprima-o;
