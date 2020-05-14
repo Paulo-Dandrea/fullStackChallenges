@@ -14,7 +14,3 @@ for (let y = 0; y < n; y += 1) {
   process.stdout.write("\n");
 }
 
-// process.stdout.write("Hello, World");
-// process.stdout.clearLine();
-// process.stdout.cursorTo(0);
-// process.stdout.write("\n"); // end the line
