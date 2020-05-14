@@ -20,17 +20,12 @@ for (let y = 0; y < n; y += 1) {
         process.stdout.write(' ');
     }
   }
-    
- 
-
-    
-    
-// Fecha lado direito do triangulo com "a"
+      
+    // Fecha lado direito do triangulo com "a"
     if (y > 0){
         process.stdout.write("a");
     }
     
-
   // Aqui quando o for 1 pula linha
   process.stdout.write("\n");
 }
