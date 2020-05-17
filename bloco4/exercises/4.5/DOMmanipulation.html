@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Exercício 4.4</title>
+    <style>
+      div {
+        border-color: black;
+        border-style: solid;
+      }
+      .title {
+        text-align: center;
+      }
+
+      .main-content {
+        background-color: yellow;
+      }
+
+      .main-content .center-content {
+        background-color: red;
+        width: 50%;
+        margin: 0 auto;
+      }
+
+      .main-content .center-content p {
+        font-style: italic;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1 class="title">Exercício 4.4 - JavaEscripito</h1>
+    <div class="main-content">
+      <div class="center-content">
+        <p>Texto padrão do nosso site</p>
+        <p>-----</p>
+        <p>Trybe</p>
+      </div>
+    </div>
+    <script>
+      //Pega por tag especificamente a a posicao 1 de ṕ
+      document.getElementsByTagName("p")[1].innerHTML =
+        "Em um projeto engrandecedor";
+      //Posição zero main content(a unica) e  transforma em green
+      document.getElementsByClassName("main-content")[0].style.backgroundColor =
+        "green";
+      //
+      document.getElementsByClassName("center-content")[0].style.backgroundColor = "white";
+//
+      document.getElementsByTagName("h1")[0].innerHTML =
+        "Ex.   4.4 - JavaescruptoRRR";
+//Variável que pega todos elementos p dentro da classe central
+      let paragraphs = document
+        .getElementsByClassName("center-content")[0]
+        .querySelectorAll("p");
+//Pass trough all paragraphs, apply uppercase and console.log all of them.
+      for (let i = 0; i < paragraphs.length; i += 1) {
+        paragraphs[i].style.textTransform = "uppercase";
+        console.log(paragraphs[i].innerHTML);
+      }
+    </script>
+  </body>
+</html>
