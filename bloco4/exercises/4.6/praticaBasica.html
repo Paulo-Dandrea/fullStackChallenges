@@ -46,6 +46,31 @@
 // Agora acesse o terceiroFilho a partir de pai.
         console.log(pai.lastElementChild.previousElementSibling)
 
+//         Crie um irmão para elementoOndeVoceEsta.
+        let newChild = document.createElement('div');
+        let newChild2 = document.createElement('div');
+        function ultimoFilhoDoPai(){
+                let ultimoFilhoDoPai = pai.appendChild(newChild)
+                ultimoFilhoDoPai.setAttribute('id', 'ultimo-filho-do-pai')
+        console.log(ultimoFilhoDoPai)
+        }
+        
+// Crie um filho para elementoOndeVoceEsta.
+        function filhoDoElementoOndeVoceEsta(){
+                let childDondeEstou = document.createElement('p')
+                let filhoDoElemento = elementoOndeVoceEsta.appendChild(childDondeEstou)
+                filhoDoElemento.setAttribute('id', 'filho do elemento')
+                console.log(filhoDoElemento)
+        }
+// Crie um filho para primeiroFilhoDoFilho.
+
+        let filhoDoPrimeiroFilhoDoFilho = primeiroFilhoDoFilho.appendChild(newChild2);
+        filhoDoPrimeiroFilhoDoFilho.setAttribute('id', 'filho-do-filho-do-filho-do-filho')
+        console.log('olha ai: ' + filhoDoPrimeiroFilhoDoFilho)
+// A partir desse filho criado, acesse terceiroFilho.
+        
+        console.log(filhoDoPrimeiroFilhoDoFilho.parentElement.parentElement.parentElement.lastElementChild.previousElementSibling)
+   
     </script>
   </body>
 </html>
