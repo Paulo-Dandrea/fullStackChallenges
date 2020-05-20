@@ -39,10 +39,11 @@ Start with this webpage, which has inputs and buttons for things to calculate:
   <div id="solution"></div>
 
   <script>
+      //Acess to div solution
       let divSolution = document.querySelector('#solution');
-
+    //Acces to square button
       let squareButton = document.querySelector("#square-button");
-
+    // add event listener to square button
       squareButton.addEventListener('click', function(){
         
         let square = document.querySelector("#square-input");
@@ -57,6 +58,8 @@ Start with this webpage, which has inputs and buttons for things to calculate:
         let halfInput = document.getElementById('half-input').value
         divSolution.innerHTML = halfInput/2;
       })
+
+      // i'm not in a math course for the next button assignment
 
       
 
