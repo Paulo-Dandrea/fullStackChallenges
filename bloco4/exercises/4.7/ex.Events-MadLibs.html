@@ -17,21 +17,19 @@
 
     <div id="story"></div>
     <script>
-
       let botao = document.querySelector("#lib-button");
       botao.addEventListener("click", makeMadLib);
 
       function makeMadLib() {
-        let nounValue = document.querySelector("#noun").value
+        let nounValue = document.querySelector("#noun").value;
         let adjectiveValue = document.querySelector("#adjective").value;
-        let someoneValue = document.querySelector('#person').value;
-        let story = document.querySelector('#story');
-        story.innerHTML = (nounValue +' '+ adjectiveValue +' '+ someoneValue)
-     }
+        let someoneValue = document.querySelector("#person").value;
+        let story = document.querySelector("#story");
+        story.innerHTML = nounValue + " " + adjectiveValue + " " + someoneValue;
+      }
     </script>
   </body>
 </html>
-
 
 <!-- Add a script tag to the bottom of the page for your code.
 Add an event listener to the button so that it calls a makeMadLib function when clicked.
