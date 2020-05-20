@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <h1>Mad Libs</h1>
+
+    <ul>
+      <li>Noun: <input type="text" id="noun" /></li>
+      <li>Adjective: <input type="text" id="adjective" /></li>
+      <li>Someone's Name: <input type="text" id="person" /></li>
+    </ul>
+
+    <button id="lib-button">Lib it!</button>
+
+    <div id="story"></div>
+    <script>
+
+      let botao = document.querySelector("#lib-button");
+      botao.addEventListener("click", makeMadLib);
+
+      function makeMadLib() {
+        let nounValue = document.querySelector("#noun").value
+        let adjectiveValue = document.querySelector("#adjective").value;
+        let someoneValue = document.querySelector('#person').value;
+        let story = document.querySelector('#story');
+        story.innerHTML = (nounValue +' '+ adjectiveValue +' '+ someoneValue)
+     }
+    </script>
+  </body>
+</html>
+
+
+<!-- Add a script tag to the bottom of the page for your code.
+Add an event listener to the button so that it calls a makeMadLib function when clicked.
+In the makeMadLib function, retrieve the current values of the form input elements, 
+make a story from them,
+ and output that in the story div (like "Pamela really likes pink cucumbers.") -->
