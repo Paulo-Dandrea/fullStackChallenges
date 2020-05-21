@@ -14,14 +14,14 @@
 
     <script>
       let img = document.querySelector("img");
-      img.style.left = 0;
+      img.style.marginLeft = 0;
 
       setInterval(catWalk, 30);
 
       function catWalk() {
-        img.style.left = parseInt(img.style.left) + 10 + "px";
-        if (parseInt(img.style.left) > window.innerWidth) {
-          img.style.left = 0 + "px";
+        img.style.marginLeft = parseInt(img.style.marginLeft) + 10 + "px";
+        if (parseInt(img.style.marginLeft) > window.innerWidth) {
+          img.style.marginLeft = 0 + "px";
         }
       }
     </script>
