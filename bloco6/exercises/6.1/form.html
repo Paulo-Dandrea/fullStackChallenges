@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <fieldset>
+      <label for="fname">
+        Digite seu nome:
+        <input type="text" name="name" id="fname" required="required" maxlength="40" />
+      </label>
+     
+      <label for="email">
+        Digite seu e-mail:
+        <input type="email" name="email"
+         id="email" maxlength="50" 
+        placeholder="texto@texto.texto"
+        required
+        />
+      </label>
+
+      <label for="CPF">
+          CPF:
+          <input 
+          id="CPF"
+          type="text"
+          maxlength="11"
+          required
+          >
+     
+      <label for="endereco">
+          Endereço:
+          <input 
+          type="text"
+          id="endereco"
+          maxlength="200"
+          required>
+      </label>
+
+      <label for="cidade">
+          Cidade:
+          <input type="text"
+          id="cidade"
+          maxlength="28"
+          required>
+      </label>
+
+      <label for="estado">
+          estado:
+          <select name="estado" id="estado">              
+          </select>
+      </label>
+
+        <label for="" id="morar-onde">Mora em:
+          <label for="casa">Casa</label>
+          <input type="radio" id="casa" name="moradia" value="casa">
+           
+          <label for="apartamento">Apartamento</label>
+          <input type="radio" name="moradia" id="apartamento" value="apartamento">
+        </label>
+
+
+    </fieldset>
+
+   
+
+    <script src="script.js"></script>
+  </body>
+</html>
