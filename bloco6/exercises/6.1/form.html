@@ -1,72 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <fieldset>
-      <label for="fname">
-        Digite seu nome:
-        <input type="text" name="name" id="fname" required="required" maxlength="40" />
-      </label>
-     
-      <label for="email">
-        Digite seu e-mail:
-        <input type="email" name="email"
-         id="email" maxlength="50" 
-        placeholder="texto@texto.texto"
-        required
-        />
-      </label>
+<body>
+    <header class="speaker-form-header">
+        <h1>Speaker Submission</h1>
+        <p><em>
+                Want to speak at our fake conference? Fill out this form.
+            </em></p>
+    </header>
 
-      <label for="CPF">
-          CPF:
-          <input 
-          id="CPF"
-          type="text"
-          maxlength="11"
-          required
-          >
-     
-      <label for="endereco">
-          Endereço:
-          <input 
-          type="text"
-          id="endereco"
-          maxlength="200"
-          required>
-      </label>
+    <form action="" class="speaker-form">
+        <fieldset>
+            <div class="form-row">
+                <div class="line-content">
+                    <label for="fname">
+                        Digite seu nome:
+                        <input type="text" name="name" id="fname" required="required" maxlength="40" />
+                    </label>
 
-      <label for="cidade">
-          Cidade:
-          <input type="text"
-          id="cidade"
-          maxlength="28"
-          required>
-      </label>
+                    <label for="email">
+                        Digite seu e-mail:
+                        <input type="email" name="email" id="email" maxlength="50" placeholder="texto@texto.texto"
+                            required />
+                    </label>
+                </div>
+                <div class="line-content">
+                    <label for="CPF">
+                        CPF:
+                        <input id="CPF" type="text" maxlength="11" required>
 
-      <label for="estado">
-          estado:
-          <select name="estado" id="estado">              
-          </select>
-      </label>
+                        <label for="endereco">
+                            Endereço:
+                            <input type="text" id="endereco" maxlength="200" required>
+                        </label>
 
-        <label for="" id="morar-onde">Mora em:
-          <label for="casa">Casa</label>
-          <input type="radio" id="casa" name="moradia" value="casa">
-           
-          <label for="apartamento">Apartamento</label>
-          <input type="radio" name="moradia" id="apartamento" value="apartamento">
-        </label>
+                        <label for="cidade">
+                            Cidade:
+                            <input type="text" id="cidade" maxlength="28" required>
+                        </label>
 
+                        <label for="estado">
+                            estado:
+                            <select name="estado" id="estado">
+                            </select>
+                        </label>
+                </div>
+                <div class="line-content">
 
-    </fieldset>
+                    <label for="" id="morar-onde">Mora em:
+                        <label for="casa">Casa</label>
+                        <input type="radio" id="casa" name="moradia" value="casa">
 
-   
+                        <label for="apartamento">Apartamento</label>
+                        <input type="radio" name="moradia" id="apartamento" value="apartamento">
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-row">
+                <div class="line-content">
+                    <label for="curriculo">
+                        Resumo do curriculo:
+                        <textarea name="resume" id="curriculo" cols="30" rows="10" required>
+        Escreva um resumo do seu CV aqui</textarea>
+                    </label>
+                    <label for="cargo">Cargo</label>
+                    <input type="text" id="cargo" maxlength="40" required>
+
+                    <label for="cargoDescricao"></label>
+                    <input type="text" id="cargoDescricao" name="descricao" required maxlength="500">
+
+                    <label for="data-de-inicio">Data de início:</label>
+                    <input type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" oninvalid="alert('Aqui é data, fiiii')" required>
+
+                    <button>Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
 
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>

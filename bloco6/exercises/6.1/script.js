@@ -13,3 +13,6 @@ function populate(){
     }
 }
 populate()
+
+
+console.log(/^([a-z0-9]{5,})$/.test('abc1'));
