@@ -1,0 +1,45 @@
+body {
+  font-size: medium;
+}
+h1 {
+  font-size: x-large;
+}
+h2 {
+  font-size: large;
+}
+
+img {
+  max-width: 100%;
+}
+
+figure {
+  /* padding: 1%; */
+  margin: 0;
+  padding: 1%;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+@media screen and (min-width: 600px) {
+  body {
+    background-color: lightgrey;
+    font-size: smaller;
+    margin: 3%;
+  }
+}
+
+
+@media screen and (min-width: 1300px) {
+    body {
+        background-color: lightpink;
+        font-size: smaller;
+        margin: 10%;
+        max-width: 80%;
+      }
+}
+
