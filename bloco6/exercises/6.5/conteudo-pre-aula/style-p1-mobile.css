@@ -1,0 +1,19 @@
+    .centro{
+        width: 100%;
+        background-color: aqua;
+    }
+
+    .coluna {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .topo h1 {
+        font-size: xx-small;
+    }
+
+    @media screen and (orientation: landscape) {
+        .centro {
+        background-color: grey;
+    }
+}
