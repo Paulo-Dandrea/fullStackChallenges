@@ -47,15 +47,14 @@ console.log(
 const allLessons = (source1, source2, source3) => {
   // const lessonUM = source1.toString()
   let superObject = Object.assign(
-    { lessonUM: source1 },
-    { lessonDOIS: source2 },
-    { lessonTRES: source3 }
+    { lesson1: source1 },
+    { lesson2: source2 },
+    { lesson3: source3 }
   );
   return superObject;
 };
 console.log('All Lessons: ');
 console.log(allLessons(lesson1, lesson2, lesson3));
-
 
 // 6. Usando o objeto criado no exercício 5, crie uma função que retorne o número total de estudantes em todas as aulas.
 
@@ -94,7 +93,7 @@ console.log(
 
 const verifyPair = (object, keyName, keyValue) => {
   if (Object.keys(object).includes(keyName)) {
-    return object[keyName].includes(keyValue);  
+    return object[keyName].includes(keyValue);
   }
 };
 // verifyPair(lesson3);
@@ -107,22 +106,56 @@ console.log(verifyPair(lesson2, 'materia', 'Carlos'));
 console.log(verifyPair(lesson2, 'materia', 'História'));
 // expected: true
 
-
 // --------------------- BONUS -----------
 
 // 1. Crie uma função para contar quantos estudantes assistiram às aulas de Matemática. Use o objeto criado no exercício 5.
 
-// const superObject3 = allLessons(lesson1, lesson2, lesson3);
+const superObject3 = allLessons(lesson1, lesson2, lesson3);
 
-// const howManyStudentsWentToMathClasses = (objetao) => {
-//     const aulas = Object.keys(objetao);
-            
-//     return 
-// };
+const howManyStudentsWentToMathClasses = (objetao) => {
+  let studentsWentToMath = 0;
+  for (let i = 0; i < Object.keys(objetao).length; i++) {
+    if (objetao[Object.keys(objetao)[i]].materia.includes('Matemática')) {
+      studentsWentToMath += objetao[Object.keys(objetao)[i]].numeroEstudantes;
+    }
+  }
+  return studentsWentToMath;
+};
 
-// console.log(
-//   `Quantidade de estudantes que foram na aula de matemática: ${howManyStudentsWentToMathClasses(superObject3)}`
-// );
-// console.log(
-// howManyStudentsWentToMathClasses(superObject3)
-// );
+console.log(
+  `Quantidade de estudantes que foram na aula de matemática: ${howManyStudentsWentToMathClasses(
+    superObject3
+  )}`
+);
+
+// 2. Crie uma função que deverá retornar um objeto que representa o relatório do professor ou professora, as aulas que ele ou ela ministrou e o número total de estudantes. Use o objeto criado no exercício 5:
+
+const createReport = (objetao, targetProf) => {
+  const objetaoArray = Object.keys(objetao);
+  let studentsWentToMath = 0;
+  const classesThatProfgave = [];
+
+  for (let i = 0; i < objetaoArray.length; i++) {
+    if (objetao[objetaoArray[i]].professor.includes(targetProf)) {
+      studentsWentToMath += objetao[objetaoArray[i]].numeroEstudantes;
+      classesThatProfgave.push(objetao[objetaoArray[i]].materia);
+    }
+  }
+  const teachersReportObjectfied = Object.assign(
+    {},
+    { professor: targetProf },
+    { aulas: classesThatProfgave },
+    { estudantes: studentsWentToMath }
+  );
+
+  return teachersReportObjectfied;
+};
+console.log(createReport(superObject3, 'Maria Clara'));
+console.log(createReport(superObject3, 'Carlos'));
+
+// const objectArray = Object.entries(numbers);
+
+// objectArray.forEach(([key, value]) => {
+//   console.log(key); // 'one'
+//   console.log(value); // 1
+// });
