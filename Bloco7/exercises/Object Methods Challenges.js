@@ -47,15 +47,14 @@ console.log(
 const allLessons = (source1, source2, source3) => {
   // const lessonUM = source1.toString()
   let superObject = Object.assign(
-    { lessonUM: source1 },
-    { lessonDOIS: source2 },
-    { lessonTRES: source3 }
+    { lesson1: source1 },
+    { lesson2: source2 },
+    { lesson3: source3 }
   );
   return superObject;
 };
 console.log('All Lessons: ');
 console.log(allLessons(lesson1, lesson2, lesson3));
-
 
 // 6. Usando o objeto criado no exercício 5, crie uma função que retorne o número total de estudantes em todas as aulas.
 
@@ -94,7 +93,7 @@ console.log(
 
 const verifyPair = (object, keyName, keyValue) => {
   if (Object.keys(object).includes(keyName)) {
-    return object[keyName].includes(keyValue);  
+    return object[keyName].includes(keyValue);
   }
 };
 // verifyPair(lesson3);
@@ -107,22 +106,24 @@ console.log(verifyPair(lesson2, 'materia', 'Carlos'));
 console.log(verifyPair(lesson2, 'materia', 'História'));
 // expected: true
 
-
 // --------------------- BONUS -----------
 
 // 1. Crie uma função para contar quantos estudantes assistiram às aulas de Matemática. Use o objeto criado no exercício 5.
 
-// const superObject3 = allLessons(lesson1, lesson2, lesson3);
+const superObject3 = allLessons(lesson1, lesson2, lesson3);
 
-// const howManyStudentsWentToMathClasses = (objetao) => {
-//     const aulas = Object.keys(objetao);
-            
-//     return 
-// };
+const howManyStudentsWentToMathClasses = (objetao) => {
+  let studentsWentToMath = 0;
+  for(let i=0; i<(Object.keys(objetao).length); i++){
+    if(objetao[Object.keys(objetao)[i]].materia.includes('Matemática')){
+      studentsWentToMath += objetao[Object.keys(objetao)[i]].numeroEstudantes
+    }    
+  }  
+  return studentsWentToMath;
+};
 
-// console.log(
-//   `Quantidade de estudantes que foram na aula de matemática: ${howManyStudentsWentToMathClasses(superObject3)}`
-// );
-// console.log(
-// howManyStudentsWentToMathClasses(superObject3)
-// );
+console.log(
+  `Quantidade de estudantes que foram na aula de matemática: ${howManyStudentsWentToMathClasses(
+    superObject3
+  )}`
+);
