@@ -114,11 +114,11 @@ const superObject3 = allLessons(lesson1, lesson2, lesson3);
 
 const howManyStudentsWentToMathClasses = (objetao) => {
   let studentsWentToMath = 0;
-  for(let i=0; i<(Object.keys(objetao).length); i++){
-    if(objetao[Object.keys(objetao)[i]].materia.includes('Matemática')){
-      studentsWentToMath += objetao[Object.keys(objetao)[i]].numeroEstudantes
-    }    
-  }  
+  for (let i = 0; i < Object.keys(objetao).length; i++) {
+    if (objetao[Object.keys(objetao)[i]].materia.includes('Matemática')) {
+      studentsWentToMath += objetao[Object.keys(objetao)[i]].numeroEstudantes;
+    }
+  }
   return studentsWentToMath;
 };
 
@@ -127,3 +127,35 @@ console.log(
     superObject3
   )}`
 );
+
+// 2. Crie uma função que deverá retornar um objeto que representa o relatório do professor ou professora, as aulas que ele ou ela ministrou e o número total de estudantes. Use o objeto criado no exercício 5:
+
+const createReport = (objetao, targetProf) => {
+  const objetaoArray = Object.keys(objetao);
+  let studentsWentToMath = 0;
+  const classesThatProfgave = [];
+
+  for (let i = 0; i < objetaoArray.length; i++) {
+    if (objetao[objetaoArray[i]].professor.includes(targetProf)) {
+      studentsWentToMath += objetao[objetaoArray[i]].numeroEstudantes;
+      classesThatProfgave.push(objetao[objetaoArray[i]].materia);
+    }
+  }
+  const teachersReportObjectfied = Object.assign(
+    {},
+    { professor: targetProf },
+    { aulas: classesThatProfgave },
+    { estudantes: studentsWentToMath }
+  );
+
+  return teachersReportObjectfied;
+};
+console.log(createReport(superObject3, 'Maria Clara'));
+console.log(createReport(superObject3, 'Carlos'));
+
+// const objectArray = Object.entries(numbers);
+
+// objectArray.forEach(([key, value]) => {
+//   console.log(key); // 'one'
+//   console.log(value); // 1
+// });
