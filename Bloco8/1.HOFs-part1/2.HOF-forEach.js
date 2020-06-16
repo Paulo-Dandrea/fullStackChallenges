@@ -71,5 +71,5 @@ function smallerName() {
   return nameBook;
 }
 
-
+console.log(smallerName)
 assert.equal(smallerName(), 'Duna');
