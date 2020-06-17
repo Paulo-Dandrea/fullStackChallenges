@@ -7,7 +7,7 @@ const books = [
     genre: 'Fantasia',
     author: {
       name: 'George R. R. Martin',
-      birthYear: 1948
+      birthYear: 1948,
     },
     releaseYear: 1991,
   },
@@ -47,7 +47,7 @@ const books = [
     genre: 'Terror',
     author: {
       name: 'Stephen King',
-      birthYear: 1947
+      birthYear: 1947,
     },
     releaseYear: 1986,
   },
@@ -63,25 +63,30 @@ const books = [
   },
 ];
 
-const expected_result = {
-  author: {
-    birthYear: 1948,
-    name: 'George R. R. Martin'
-  },
-  genre: 'Fantasia',
-  id: 1,
-  name: 'As Crônicas de Gelo e Fogo',
-  releaseYear: 1991
-};
+const expected_result = 'O Senhor dos Anéis';
 
-function getNamedBook() {
-  // escreva seu código aqui
-  let targetBook = books.find((book) => book.name.length === 26);
-  
-  return targetBook
+
+
+// Função que retorna true para o filtro
+const filterDots = (char) => char === '.';
+
+function authorWith3DotsOnName() { 
+
+
+  let targetBook = books.find ((book) => {
+    //transformando o nome do autor em um array por caracteres
+    let splitedNameToFilterDots = book.author.name.split(''); 
+    //Armazenar um array com a quantidade de pontos
+    numberOfDots = splitedNameToFilterDots.filter(filterDots);
+    console.log (numberOfDots)
+    return numberOfDots.length >= 3 // retorna true pro find dizendo que aqui tem 3 pontos    
+  })
+
+  return (
+    'Livro que o nome do Autor tem 3 pontos: ' + targetBook.name
+  );
 }
 
-assert.deepEqual(getNamedBook(), expected_result);
-console.log(getNamedBook())
-
-//Encontre o livro cujo nome possui 26 caracteres.
+// assert.deepEqual(authorWith3DotsOnName(), expected_result);
+console.log(authorWith3DotsOnName());
+// authorWith3DotsOnName();
