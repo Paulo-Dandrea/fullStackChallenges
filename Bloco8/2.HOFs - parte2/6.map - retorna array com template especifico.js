@@ -7,7 +7,7 @@ const books = [
     genre: 'Fantasia',
     author: {
       name: 'George R. R. Martin',
-      birthYear: 1948,
+      birthYear: 1948
     },
     releaseYear: 1991,
   },
@@ -47,7 +47,7 @@ const books = [
     genre: 'Terror',
     author: {
       name: 'Stephen King',
-      birthYear: 1947,
+      birthYear: 1947
     },
     releaseYear: 1986,
   },
@@ -63,27 +63,24 @@ const books = [
   },
 ];
 
-function allNames() {
-  // escreva seu código aqui
-  const namesAccumulator = (
-    nameAccumulator,
-    currentValue,
-    currentIndex,
-    obj
-  ) => {
-    return `${(nameAccumulator + currentValue.author.name)}${
-      currentIndex === obj.length - 1 ? '.' : ', '
-    }`;
-  };
-  const allNames = books.reduce(namesAccumulator,'Nomes: ');
+const expected_result = [
+  'As Crônicas de Gelo e Fogo - Fantasia - George R. R. Martin',
+  'O Senhor dos Anéis - Fantasia - J. R. R. Tolkien',
+  'Fundação - Ficção Científica - Isaac Asimov',
+  'Duna - Ficção Científica - Frank Herbert',
+  'A Coisa - Terror - Stephen King',
+  'O Chamado de Cthulhu - Terror - H. P. Lovecraft'
+];
 
-  return allNames;
+function formatedBookNames() {
+  // escreva seu código aqui
+  const booksFormated = books.map(book => `${book.name + ' - ' + book.genre + ' - ' + book.author.name}`)
+  return booksFormated
 }
 
-assert.deepEqual(allNames(), "Nomes: George R. R. Martin, J. R. R. Tolkien, Isaac Asimov, Frank Herbert, Stephen King, H. P. Lovecraft.");
+assert.deepEqual(formatedBookNames(), expected_result);
 
-console.log(allNames());
 
-//Crie uma string com os nomes de todas as pessoas autoras.
 
-//array.reduce(function(acumulador, elementoAtual, indexAtual, arrayOriginal), valorInicial)
+
+// NOME_DO_LIVRO - GÊNERO_DO_LIVRO - NOME_DA_PESSOA_AUTORA

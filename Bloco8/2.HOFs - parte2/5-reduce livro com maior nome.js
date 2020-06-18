@@ -63,27 +63,25 @@ const books = [
   },
 ];
 
-function allNames() {
-  // escreva seu código aqui
-  const namesAccumulator = (
-    nameAccumulator,
-    currentValue,
-    currentIndex,
-    obj
-  ) => {
-    return `${(nameAccumulator + currentValue.author.name)}${
-      currentIndex === obj.length - 1 ? '.' : ', '
-    }`;
-  };
-  const allNames = books.reduce(namesAccumulator,'Nomes: ');
+const expected_result = {
+  author: {
+    birthYear: 1948,
+    name: 'George R. R. Martin',
+  },
+  genre: 'Fantasia',
+  id: 1,
+  name: 'As Crônicas de Gelo e Fogo',
+  releaseYear: 1991,
+};
 
-  return allNames;
+function longestNamedBook() {
+  // escreva seu código aqui
+  const reducer = (bigger, isBigger) =>
+    bigger.name.length > isBigger.name.length ? bigger : isBigger;
+  const targetbook = books.reduce(reducer, books[0]);
+
+  return targetbook;
 }
 
-assert.deepEqual(allNames(), "Nomes: George R. R. Martin, J. R. R. Tolkien, Isaac Asimov, Frank Herbert, Stephen King, H. P. Lovecraft.");
-
-console.log(allNames());
-
-//Crie uma string com os nomes de todas as pessoas autoras.
-
-//array.reduce(function(acumulador, elementoAtual, indexAtual, arrayOriginal), valorInicial)
+assert.deepEqual(longestNamedBook(), expected_result);
+console.log(longestNamedBook());

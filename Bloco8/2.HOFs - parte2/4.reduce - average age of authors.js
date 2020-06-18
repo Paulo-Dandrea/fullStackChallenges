@@ -63,27 +63,20 @@ const books = [
   },
 ];
 
-function allNames() {
-  // escreva seu código aqui
-  const namesAccumulator = (
-    nameAccumulator,
-    currentValue,
-    currentIndex,
-    obj
-  ) => {
-    return `${(nameAccumulator + currentValue.author.name)}${
-      currentIndex === obj.length - 1 ? '.' : ', '
-    }`;
-  };
-  const allNames = books.reduce(namesAccumulator,'Nomes: ');
+const expected_result = 43;
 
-  return allNames;
+function averageAge() {
+  // escreva seu código aqui
+    const mediaReducer = (acc, crv, idx, obj) => {
+        acc += (crv.releaseYear - crv.author.birthYear)
+        console.log(acc)
+        return acc 
+    }
+    const somaDasIdades = books.reduce(mediaReducer, 0)
+  return somaDasIdades / books.length;
 }
 
-assert.deepEqual(allNames(), "Nomes: George R. R. Martin, J. R. R. Tolkien, Isaac Asimov, Frank Herbert, Stephen King, H. P. Lovecraft.");
+// assert.equal(averageAge(), expected_result);
+console.log(averageAge());
 
-console.log(allNames());
-
-//Crie uma string com os nomes de todas as pessoas autoras.
-
-//array.reduce(function(acumulador, elementoAtual, indexAtual, arrayOriginal), valorInicial)
+// (books[0].releaseYear - books[0].author.birthYear)
