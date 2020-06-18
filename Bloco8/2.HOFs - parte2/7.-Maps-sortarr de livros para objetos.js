@@ -7,7 +7,7 @@ const books = [
     genre: 'Fantasia',
     author: {
       name: 'George R. R. Martin',
-      birthYear: 1948,
+      birthYear: 1948
     },
     releaseYear: 1991,
   },
@@ -47,7 +47,7 @@ const books = [
     genre: 'Terror',
     author: {
       name: 'Stephen King',
-      birthYear: 1947,
+      birthYear: 1947
     },
     releaseYear: 1986,
   },
@@ -63,27 +63,43 @@ const books = [
   },
 ];
 
-function allNames() {
-  // escreva seu código aqui
-  const namesAccumulator = (
-    nameAccumulator,
-    currentValue,
-    currentIndex,
-    obj
-  ) => {
-    return `${(nameAccumulator + currentValue.author.name)}${
-      currentIndex === obj.length - 1 ? '.' : ', '
-    }`;
-  };
-  const allNames = books.reduce(namesAccumulator,'Nomes: ');
+const expected_result = [
+  {
+    age: 31,
+    author: 'Isaac Asimov'
+  },
+  {
+    age: 38,
+    author: 'H. P. Lovecraft'
+  },
+  {
+    age: 39,
+    author: 'Stephen King'
+  },
+  {
+    age: 43,
+    author: 'George R. R. Martin'
+  },
+  {
+    age: 45,
+    author: 'Frank Herbert'
+  },
+  {
+    age: 62,
+    author: 'J. R. R. Tolkien'
+  }
+];
 
-  return allNames;
+function nameAndAge() {
+  // escreva seu código aqui
+  const mapped = books.map(book => {
+    return {age: (book.releaseYear - book.author.birthYear), author: (book.author.name)}
+  })
+
+  return mapped.sort((a,b) => a.age - b.age)
 }
 
-assert.deepEqual(allNames(), "Nomes: George R. R. Martin, J. R. R. Tolkien, Isaac Asimov, Frank Herbert, Stephen King, H. P. Lovecraft.");
+assert.deepEqual(nameAndAge(), expected_result);
 
-console.log(allNames());
 
-//Crie uma string com os nomes de todas as pessoas autoras.
-
-//array.reduce(function(acumulador, elementoAtual, indexAtual, arrayOriginal), valorInicial)
+// Construa um array de objetos a partir do array de livros. Cada objeto deve conter uma propriedade author, com o nome da pessoa autora do livro, e uma propriedade age com a idade dessa pessoa quando o livro foi lançado. O array deve ser ordenado por idade, ou seja, da pessoa mais jovem para a mais velha considerando suas idades quando o livro foi lançado.

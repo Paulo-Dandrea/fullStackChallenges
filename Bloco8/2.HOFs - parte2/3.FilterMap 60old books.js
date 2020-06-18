@@ -63,27 +63,19 @@ const books = [
   },
 ];
 
-function allNames() {
-  // escreva seu código aqui
-  const namesAccumulator = (
-    nameAccumulator,
-    currentValue,
-    currentIndex,
-    obj
-  ) => {
-    return `${(nameAccumulator + currentValue.author.name)}${
-      currentIndex === obj.length - 1 ? '.' : ', '
-    }`;
-  };
-  const allNames = books.reduce(namesAccumulator,'Nomes: ');
+const expected_result = [
+  'O Senhor dos Anéis',
+  'Fundação',
+  'O Chamado de Cthulhu',
+];
 
-  return allNames;
+function oldBooks() {
+  // escreva seu código aqui
+  const oldBooksArray = books
+    .filter(book => 2020 - book.releaseYear > 60)
+    .map(book => book.name);
+  return oldBooksArray;
 }
 
-assert.deepEqual(allNames(), "Nomes: George R. R. Martin, J. R. R. Tolkien, Isaac Asimov, Frank Herbert, Stephen King, H. P. Lovecraft.");
-
-console.log(allNames());
-
-//Crie uma string com os nomes de todas as pessoas autoras.
-
-//array.reduce(function(acumulador, elementoAtual, indexAtual, arrayOriginal), valorInicial)
+// assert.deepEqual(oldBooks(), expected_result);
+console.log(oldBooks());
