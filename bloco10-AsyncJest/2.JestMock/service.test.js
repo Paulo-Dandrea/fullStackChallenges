@@ -30,8 +30,8 @@ test("#randomRgbColor", () => {
 
 //     expect(randomNumber).toHaveBeenCalledTimes(0);
 
-//     expect(randomNumber()).toBe(5);
-//     expect(isDivisible(3)).toBe(false);
+    // expect(randomNumber()).toBe(5);
+    // expect(isDivisible(3)).toBe(false);
 
 //     expect(randomNumber).toHaveBeenCalledTimes(1);
 
