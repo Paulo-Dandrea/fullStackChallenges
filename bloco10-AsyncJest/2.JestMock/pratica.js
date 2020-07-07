@@ -6,9 +6,9 @@ const strToUpper = str => str.toUpperCase();
 const firstLetter = str => str.charAt(0);
 const concat2 = (str1, str2) => str1.concat(str2);
 
-console.log(strToUpper('adad'))
-console.log(firstLetter('adad'))
-console.log(concat2('adad', 'hahahaha'))
+// console.log(strToUpper('adad'))
+// console.log(firstLetter('adad'))
+// console.log(concat2('adad', 'hahahaha'))
 
 module.exports = { randomNumber, strToUpper, firstLetter, concat2 };
 
