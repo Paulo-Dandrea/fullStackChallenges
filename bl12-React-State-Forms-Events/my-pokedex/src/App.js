@@ -10,28 +10,47 @@ class App extends React.Component {
 
     this.state = {
       counter: 0,
-      selectedPokemon: pokemons[0].name,
+      selectedPokemon: pokemons[0],
+      tipo: 'Fire',
     };
   }
 
   setNext = () => {
     this.setState((state) => {
       if (state.counter > pokemons.length - 2) {
-        return { counter: 0, selectedPokemon: pokemons[0].name };
+        return { counter: 0, selectedPokemon: pokemons[0]};
       } else {
         return {
           counter: state.counter + 1,
-          selectedPokemon: pokemons[state.counter + 1].name,
+          selectedPokemon: pokemons[state.counter + 1],
+          type: 'Fire'
         };
       }
     });
   };
 
+  setType = (type) => {
+    this.setState(state => {
+      return {tipo: type}
+    })
+  }
+
+ pokemonTypes = pokemons.reduce((types, {type}) => [...types, type], []);
+
+
   render() {
     return (
       <div className='App'>
         <button onClick={this.setNext}>Next!</button>
-        <Pokedex pokemonName={this.state.selectedPokemon} />
+        <button onClick={() => this.setType('Fire')}>Fire!</button>
+        <button onClick={() => this.setType('Psychic')}>Psychic!</button>
+        <button onClick={() => this.setType('Normal')}>Normal!</button>
+        <button onClick={() => this.setType('Dragon')}>Dragon!</button>
+        <button onClick={() => this.setType('Poison')}>Poison!</button>
+        <button onClick={() => this.setType('Bug')}>Bug!</button>
+        <button onClick={() => this.setType('All')}>All!</button>
+
+        <Pokedex pokemon={this.state} />
       </div>
     );
   }
@@ -39,4 +58,16 @@ class App extends React.Component {
 
 export default App;
 
-// Altere a sua página para que, ao invés de exibir toda a lista de pokémons, ela exiba um pokémon por vez. Ao apertar um botão de Próximo pokémon, a página passa a exibir o próximo pokémon da lista, e depois o próximo, e assim sucessivamente. Ao se chegar ao último pokémon da lista, a pokedex deve voltar para o primeiro pokémon no apertar do botão. Dica: Lembre-se disso!
+
+
+
+// {pokemonTypes.map(type => (
+//   <Button
+//     key={type}
+//     onClick={() => this.filterPokemons(type)}
+//     className="filter-button">
+//     {type}
+//   </Button>
+// ))}
+
+//  return [...new Set(pokemons.reduce((types, {type}) => [...types, type], []))];
