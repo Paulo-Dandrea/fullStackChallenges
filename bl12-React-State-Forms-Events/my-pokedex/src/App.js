@@ -15,19 +15,23 @@ class App extends React.Component {
   }
 
   setNext = () => {
-
     this.setState((state) => {
-
-      return {counter: state.counter + 1, selectedPokemon: pokemons[state.counter].name }
-
-    })
-  }
+      if (state.counter > pokemons.length - 2) {
+        return { counter: 0, selectedPokemon: pokemons[0].name };
+      } else {
+        return {
+          counter: state.counter + 1,
+          selectedPokemon: pokemons[state.counter + 1].name,
+        };
+      }
+    });
+  };
 
   render() {
     return (
       <div className='App'>
-        <button onClick={this.setNext} >Next!</button>
-        <Pokedex pokemonName={this.state.selectedPokemon}/>
+        <button onClick={this.setNext}>Next!</button>
+        <Pokedex pokemonName={this.state.selectedPokemon} />
       </div>
     );
   }
