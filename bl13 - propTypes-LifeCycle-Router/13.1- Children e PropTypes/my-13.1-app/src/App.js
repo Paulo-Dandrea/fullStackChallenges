@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from './Button';
 import Alert from './Alert';
+import Dropdown from './Dropdown';
 
 class App extends Component {
   constructor(props) {
@@ -9,6 +10,9 @@ class App extends Component {
     this.state = {
       showModal: false,
       isDisableButton: false,
+      content: [
+        {id: 1, item: 'O Estrangeiro'},
+      ]
     }
   }
 
@@ -26,11 +30,27 @@ class App extends Component {
   }
 
   obj = {
-      title: "Obj Algum títwwwwulo",
+      title: "Obj Algum wulo",
       content: "Obj Algum conteúdo", timeSeconds: 3 
     }
 
-  content = [
+
+  changeDropdown = (book) => {
+    this.state.content.length > 1 
+    ?    this.setState(() => (
+      {
+        content: [book]
+      }
+    ))
+
+    :    this.setState((state) => (
+      {
+        content: this.contentao
+      }
+    ))
+  } 
+
+  contentao = [
     {id: 1, item: 'O Estrangeiro'},
     {id: 2, item: 'Black Swan'},
     {id: 3, item: 'Nudge'},
@@ -47,6 +67,9 @@ class App extends Component {
             contentTitle="Modal"
             content="Coloque qualquer coisa aqui."
         >{this.obj}</Alert>}
+        <Dropdown click={this.changeDropdown.bind(this)}>
+          {this.state.content}
+        </Dropdown>
           
       </div>
     )
@@ -55,4 +78,3 @@ class App extends Component {
 
 export default App;
 
-//O código abaixo é um protótipo de modal. Crie a checagem de tipo para todas as props dos componentes. Crie um app react com o create-react-app e adicione o código abaixo para começar.
