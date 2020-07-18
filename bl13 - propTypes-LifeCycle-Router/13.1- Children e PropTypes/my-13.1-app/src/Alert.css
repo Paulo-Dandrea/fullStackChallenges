@@ -1,0 +1,18 @@
+.Alert{
+  background: gray;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.Dropdown{
+  background: gray;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.DropdownList{
+  background: rgb(167, 96, 96);
+  padding: 20px;
+  border-radius: 10px;
+  border: solid black;
+}
