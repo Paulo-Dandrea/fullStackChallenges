@@ -8,7 +8,7 @@ const PicturesList = (props) => {
         {props.children.map(e =>(
           <Pictures
           key={e.id}
-          height={200}
+          height={'200'}
           src={e.src}
           alt="Logo da Trybe"
           legenda="Lista feita na Trybe"

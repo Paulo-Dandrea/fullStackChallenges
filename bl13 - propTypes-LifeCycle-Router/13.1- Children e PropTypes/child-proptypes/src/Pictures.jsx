@@ -13,7 +13,7 @@ const Pictures = (props) => {
 
 Pictures.propTypes = {
   alt: PropTypes.string,
-  height: PropTypes.number, 
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), 
   // children: PropTypes.any.isRequired, 
   }
 
