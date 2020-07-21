@@ -1,12 +1,15 @@
 // arquivo App.js, criado pelo create-react-app, modificado
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import Users from './components/Users';
 
 class App extends Component {
   render() {
+
+    const usersList = [10, 100, 300]
+
     return (
       <BrowserRouter>
         <header className="trybe-header">
@@ -20,12 +23,22 @@ class App extends Component {
             <span>
               <Link to="/users">Users</Link>
             </span>
+            <Switch>
             <Route exact path='/' component={Home}/>
             <Route path='/about' component={About} />
+            <Route path='/users/:userId' component={Users} />
             <Route 
               path='/users' 
-              render={(props) => <Users {...props} greetingMessage='Alô, pessoal' />}
+              render={(props) => <Users {...props} greetingMessage='Alô, pessoal' usersList={usersList}/>}
             />
+
+          {/* <Route path='/solutions/:solutionID' component={Solutions} />
+          <Route
+            path='/solutions'
+            render={props => <Solutions {...props} diasGabaritos={diasGabaritos} />}
+          /> */}
+          </Switch>
+
           </nav>
         </header>
       </BrowserRouter>
