@@ -49,3 +49,7 @@ SELECT * FROM hr.employees WHERE FIRST_NAME = BINARY UPPER(FIRST_NAME); -- A par
 
 -- 9. Write a query to extract the last 4 character of phone numbers
 SELECT RIGHT(PHONE_NUMBER, 4) FROM hr.employees;
+
+-- 10. Write a query to get the last word of the street address.
+
+SELECT * FROM hr.employees;
