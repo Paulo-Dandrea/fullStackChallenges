@@ -51,5 +51,16 @@ SELECT * FROM hr.employees WHERE FIRST_NAME = BINARY UPPER(FIRST_NAME); -- A par
 SELECT RIGHT(PHONE_NUMBER, 4) FROM hr.employees;
 
 -- 10. Write a query to get the last word of the street address.
+-- https://stackoverflow.com/questions/7054883/sql-statement-to-find-last-word-in-string
+SELECT 
+SUBSTRING_INDEX(TRIM(STREET_ADDRESS), ' ', -1)
+AS 'Last word from adress' 
+FROM hr.locations;
 
-SELECT * FROM hr.employees;
+-- 11. Write a query to get the locations that have minimum street length.
+
+SELECT
+*
+FROM hr.locations
+WHERE LENGTH(STREET_ADDRESS) <= (SELECT MIN(LENGTH(STREET_ADDRESS)) FROM hr.locations);
+
