@@ -64,3 +64,7 @@ SELECT
 FROM hr.locations
 WHERE LENGTH(STREET_ADDRESS) <= (SELECT MIN(LENGTH(STREET_ADDRESS)) FROM hr.locations);
 
+-- 12. Write a query to display the first word from those job titles which contains more than one words.
+-- https://www.w3schools.com/sql/trymysql.asp?filename=trysql_func_mysql_instr2
+SELECT job_title, SUBSTR(job_title,1, INSTR(job_title, ' ')-1)
+FROM hr.jobs;
