@@ -9,8 +9,6 @@ CREATE TRIGGER on_updating_movies
 BEFORE UPDATE ON movies
 FOR EACH ROW
 BEGIN
-	DECLARE estimation VARCHAR(20);
-
 IF (NEW.ticket_price > OLD.ticket_price) THEN
 	SET NEW.ticket_price_estimation = 'Increasing';
     INSERT INTO movies_logs(movie_id, action, log_date) VALUES(NEW.movie_id, 'Increasing', now());
@@ -18,8 +16,6 @@ ELSE
 	SET NEW.ticket_price_estimation = 'Decreasing';
         INSERT INTO movies_logs(movie_id, action, log_date) VALUES(NEW.movie_id, 'Decreasing', now());
 END IF;
-
-
 END $$;
 
 DELIMITER ;
