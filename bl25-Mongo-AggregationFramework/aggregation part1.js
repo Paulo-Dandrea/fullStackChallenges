@@ -60,7 +60,7 @@ db.orders.aggregate([
             expr: {
               and: [
                 { $eq: ["$stock_item", "$$order_item"] }, // aqui, como quando juntávamos uma table com a outra, especificamos que o nome do order_item($item, por isso que tem 2 $$) é o mesmo que o stock_item (que é o nome do field que vem do warehouse)
-                { $gte: ["$instock", "$$order_qty"] },// tem que ter mais no warehouse do que a quantidade comprada
+                { $gte: ["$instock", "$$order_qty"] }, // tem que ter mais no warehouse do que a quantidade comprada
               ],
             },
           },
@@ -74,33 +74,139 @@ db.orders.aggregate([
 
 // Cada produto vai voltar assim:
 
-{
-  "_id" : 1,
-  "item" : "almonds",
-  "price" : 12,
-  "ordered" : 2,
-  "stockdata" : [
-    {
-      "warehouse" : "A",
-      "instock" : 120
-    },
-    {
-      "warehouse" : "B",
-      "instock" : 60
-    }
-  ]
-}
+// {
+//   "_id" : 1,
+//   "item" : "almonds",
+//   "price" : 12,
+//   "ordered" : 2,
+//   "stockdata" : [
+//     {
+//       "warehouse" : "A",
+//       "instock" : 120
+//     },
+//     {
+//       "warehouse" : "B",
+//       "instock" : 60
+//     }
+//   ]
+// }
 
 // Tinham dois estoques de amêndoas na Warehouse, então, volta como "stockdata" um Array. Essa é a função 'set & pipeline'
 
-// fixação. 
-db.transactions.aggregate([{$lookup: {
-  from: 'clients',
-  localField: 'from',
-  foreignField: 'name',
-  as: 'client'
-}},
-{
-  $unwind: "$client" // só para tirar de dentro do array, neste caso
-}
-])
+// fixação.
+db.transactions.aggregate([
+  {
+    $lookup: {
+      from: "clients",
+      localField: "from",
+      foreignField: "name",
+      as: "client",
+    },
+  },
+  {
+    $unwind: "$client", // só para tirar de dentro do array, neste caso
+  },
+]);
+// Pipeline com match
+db.orders.aggregate([
+  {
+    lookup: {
+      from: "warehouses",
+      let: { order_item: "$item", order_qty: "$ordered" },
+      pipeline: [
+        {
+          match: {
+            expr: {
+              and: [
+                { $eq: ["$stock_item", "$$order_item"] }, // o nome do item em uma table é o mesmo da outra table
+                { $gte: ["$instock", "$$order_qty"] },
+              ],
+            },
+          },
+        },
+        { $project: { stock_item: 0, _id: 0 } },
+      ],
+      as: "stockdata",
+    },
+  },
+]);
+
+// let pipeline fixation
+// Selecione todos os clientes com as suas respectivas transações feitas;
+db.transactions.aggregate([
+  {
+    $lookup: {
+      from: "clients",
+      let: { nameFrom: "$from" },
+      pipeline: [
+        {
+          $match: {
+            $expr: {
+              $eq: ["$$nameFrom", "$name"],
+            },
+          },
+        },
+        { $project: { _id: 0 } },
+      ],
+      as: "profile",
+    },
+  },
+]);
+
+// Selecione quatro clientes com as suas respectivas transações recebidas;
+
+db.clients.aggregate([
+  {
+    $lookup: {
+      from: "transactions",
+      let: { name: "$name" },
+      pipeline: [
+        {
+          $match: {
+            $expr: {
+              $eq: ["$$name", "$to"],
+            },
+          },
+        },
+        { $project: { _id: 0 } },
+      ],
+      as: "receivedFrom",
+    },
+  },
+  { $project: { _id: 0 } },
+  { $limit: 4 },
+]);
+
+// Selecione todos os cliente do estado da "Florida" e suas respectivas transações recebidas.
+
+db.clients.aggregate([
+  {
+    $match: {
+      State: "Florida",
+    },
+  },
+  {
+    $lookup: {
+      from: "transactions",
+      let: { name: "$name" },
+      pipeline: [
+        {
+          $match: {
+            $expr: {
+              $eq: ["$$name", "$to"],
+            },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+          },
+        },
+      ],
+      as: "esseCaraDeFloridaRecebeu",
+    },
+  },
+  {
+    $project: { _id: 0 },
+  },
+]);
