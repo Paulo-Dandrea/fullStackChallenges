@@ -98,6 +98,6 @@ var questions = [
 ];
 
 inquirer.prompt(questions).then((answers) => {
-  console.log(calculaIMC(answers.peso, answers.altura))
+  console.log(calculaIMC(answers.peso, answers.alturaread))
   // console.log(JSON.stringify(answers, null, '  '));
 });
