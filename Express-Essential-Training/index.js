@@ -13,7 +13,7 @@ app.use("/images", express.static("images"));
 
 app.use(serveFavicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-app.use(express.urlencoded({extended: true})); // to parse everything to jason
+app.use(express.json()); // to parse everything to jason
 
 app.get("/", (req, res) => {
   res.status(200).json(data);
