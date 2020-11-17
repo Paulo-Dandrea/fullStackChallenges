@@ -38,6 +38,7 @@ const writeOnSimpsonsFile = async ({id, name}) => {
 }
 
 router.post('/', (req, res) => {
+  
   writeOnSimpsonsFile(req.body)
 })
 
