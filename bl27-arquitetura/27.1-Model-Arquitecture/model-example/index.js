@@ -31,10 +31,9 @@ app.post('/authors', async (req, res) => {
     }
     console.log('creating?');
 
-    await Author.create(first_name, middle_name, last_name); // parece não voltar 
+    await Author.create(first_name, middle_name, last_name); // Ele está escrevendo no banco mas...
 
-    res.status(201).status({message: "Autor criado com sucesso!"}); // acaba não entrando aqui
-    
+    res.status(201).status({message: "Autor criado com sucesso!"}); // ...acaba não entrando aqui
 })
 
 const PORT = process.env.PORT || 3000;
