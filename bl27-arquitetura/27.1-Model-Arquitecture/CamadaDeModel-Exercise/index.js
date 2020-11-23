@@ -16,6 +16,23 @@ app.post('/user', async (req, res) => {
   res.status(201).json({ message: 'Usuário criado com sucesso' });
 });
 
+app.get('/user', async (req, res) => {
+  const allUsers = await Users.getAll();
+
+  res.status(200).json(allUsers);
+});
+
+app.get('/user/:id', async (req, res) => {
+  const { id } = req.params;
+  const user = await Users.getById(id);
+
+  if (user) {
+    return res.status(200).json(user);
+  }
+
+  return res.status(400).json({ message: 'Usuário não encontrado' });
+});
+
 const PORT = 3000;
 
 app.listen(PORT, () => console.log('vai na 300'));
