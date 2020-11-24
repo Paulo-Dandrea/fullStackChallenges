@@ -1,7 +1,6 @@
 const { MongoClient } = require('mongodb');
-const connection = require('../../../27.1-Model-Arquitecture/model-example/Models/connection');
 
-const connection = () => {
+const connection = async () => {
   return MongoClient.connect(
     process.env.DB_URL, // .env
     {
@@ -9,7 +8,7 @@ const connection = () => {
       useUnifiedTopology: true,
     },
   )
-    .then((conn) => conn.db(cep_lookup))
+    .then((conn) => conn.db('cep_lookup'))
     .catch((err) => {
       console.error(err);
       process.exit(1);
