@@ -1,11 +1,17 @@
 const connection = require('./connect');
 
-const insertCEP = async (CEP, UF, cidade, bairro, logradouro) => {
+const insertCEPonMongo = async (CEP, UF, cidade, bairro, logradouro) => {
   connection().then((db) =>
     db.collection('CEP').insertOne({ CEP, UF, cidade, bairro, logradouro }),
   );
 };
 
+const getAllCachedCeps = async () => 
+  connection()
+  .then((db) => db.collection('CEP').find().toArray())
+
+
 module.exports = {
-  insertCEP
+  insertCEPonMongo,
+  getAllCachedCeps
 }

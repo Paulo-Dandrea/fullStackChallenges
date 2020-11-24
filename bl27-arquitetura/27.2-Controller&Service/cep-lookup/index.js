@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { insertCEP } = require('./Models/cep-model');
+// const { insertCEP, getAllCachedCeps } = require('./Models/cep-model');
+const cepControllers = require('./Controllers/cepController');
 const app = express();
 
 require('dotenv').config();
@@ -10,8 +11,4 @@ app.listen(PORT, () =>
   console.log(`SERVER for cep-lookup LISTENING ON ${PORT}`),
 );
 
-app.get('/lookup/:cep', (req, res) => {
-  const { cep } = req.params;
-  insertCEP(cep)
-  console.log(cep);
-})
+app.get('/lookup', cepControllers.getAll, cepControllers.insertCEP)
