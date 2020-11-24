@@ -1,5 +1,6 @@
 const express = require('express');
 const Users = require('./Models/Users');
+const Middlewares = require('./Middlewares/index');
 
 const app = express();
 
@@ -32,6 +33,26 @@ app.get('/user/:id', async (req, res) => {
 
   return res.status(400).json({ message: 'Usuário não encontrado' });
 });
+
+app.put('/user/:id', async (req, res) => {
+  const { id } = req.params;
+  const { first_name, last_name, email, password } = req.body;
+
+  if (!Users.userIsValid(first_name, last_name, email, password)) {
+    return res.status(200).json({ message: 'Dados Inválidos' });
+  }
+
+  await Users.update(id, first_name, last_name, email, password);
+
+  return res.status(200).json({message: 'Usuário atualizado com sucesso'})
+});
+
+app.delete('/user/:id', async (req, res) => {
+  await Users.exclude(req.params.id);
+  res.status(200).json({message : 'Usuário deletado com sucesso'});
+})
+
+app.use(Middlewares.error);
 
 const PORT = 3000;
 

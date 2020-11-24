@@ -3,7 +3,7 @@ const connection = require('./connection');
 const getAll = async () =>
   connection
     .execute('SELECT * FROM user_exercises.users')
-    .then(([[results]]) => results); // o [results] é para desestruturar e pegar o primeiro valor do array
+    .then(([results]) => results); // o [results] é para desestruturar e pegar o primeiro valor do array
 
 const getById = async (id) =>
   connection
@@ -28,9 +28,21 @@ const createNewUser = async (first_name, last_name, email, password) => {
   );
 };
 
+const update = async (id, first_name, last_name, email, password) => {
+  await connection.execute(
+    'UPDATE user_exercises.users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?',
+    [first_name, last_name, email, password, id],
+  );
+};
+
+const exclude = async (id) =>
+  connection.execute('DELETE FROM user_exercises.users WHERE id = ?', [id]);
+
 module.exports = {
   createNewUser,
   userIsValid,
   getAll,
-  getById
+  getById,
+  update,
+  exclude,
 };
