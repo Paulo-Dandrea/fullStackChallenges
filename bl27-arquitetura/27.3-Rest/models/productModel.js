@@ -13,6 +13,13 @@ const getById = async (id) =>
   getCollection('products').then((products) => products.findOne(ObjectId(id)));
 
 const exclude = async (id) =>
-  getCollection('products').then((products) => products.deleteOne({ _id: ObjectId(id) }));
+  getCollection('products').then((products) =>
+    products.deleteOne({ _id: ObjectId(id) }),
+  );
 
-module.exports = { add, getAll, getById, exclude};
+const update = async (id, name, brand) =>
+  getCollection('products').then((products) =>
+    products.updateOne({ _id: ObjectId(id) }, { $set: { name, brand } }),
+  );
+
+module.exports = { add, getAll, getById, exclude, update };

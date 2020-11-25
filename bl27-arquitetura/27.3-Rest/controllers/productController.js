@@ -29,12 +29,12 @@ router.delete('/delete-user/:id', async (req, res) => {
   res.send(products);
 });
 
-// router.post('/update-user/:id', async (req, res) => {
-//   const { name, brand } = req.body;
+router.post('/update-user/:id', async (req, res) => {
+  const { name, brand } = req.body;
 
-//   const products = await ProductModel.update(req.params.id, name, brand);
+  const products = await ProductModel.update(req.params.id, name, brand);
 
-//   res.send(products);
-// });
+  res.send(products);
+});
 
 module.exports = router;
