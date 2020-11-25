@@ -1,5 +1,5 @@
 const getCollection = require('./get-collection');
-const { ObjectId} = require('mongodb')
+const { ObjectId } = require('mongodb');
 
 const add = async (name, brand) =>
   getCollection('products')
@@ -8,9 +8,11 @@ const add = async (name, brand) =>
 
 const getAll = async () =>
   getCollection('products').then((products) => products.find().toArray());
-  
-  const getById = async (id) =>
-    getCollection('products').then((products) => products.findOne(ObjectId(id)));
 
+const getById = async (id) =>
+  getCollection('products').then((products) => products.findOne(ObjectId(id)));
 
-module.exports = { add, getAll, getById };
+const exclude = async (id) =>
+  getCollection('products').then((products) => products.deleteOne({ _id: ObjectId(id) }));
+
+module.exports = { add, getAll, getById, exclude};

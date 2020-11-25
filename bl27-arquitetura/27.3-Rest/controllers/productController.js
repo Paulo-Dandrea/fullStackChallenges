@@ -23,11 +23,11 @@ router.post('/add-user', async (req, res) => {
   res.send(newProduct);
 });
 
-// router.post('/delete-user/:id', async (req, res) => {
-//   const products = await ProductModel.exclude(req.params.id);
+router.delete('/delete-user/:id', async (req, res) => {
+  const products = await ProductModel.exclude(req.params.id);
 
-//   res.send(products);
-// });
+  res.send(products);
+});
 
 // router.post('/update-user/:id', async (req, res) => {
 //   const { name, brand } = req.body;
