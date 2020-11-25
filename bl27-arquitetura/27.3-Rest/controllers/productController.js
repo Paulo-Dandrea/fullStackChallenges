@@ -3,17 +3,17 @@ const ProductModel = require('../models/productModel');
 
 const router = express.Router();
 
-// router.get('/list-products', async (req, res, next) => {
-//   const products = await ProductModel.getAll();
+router.get('/list-products', async (req, res, next) => {
+  const products = await ProductModel.getAll();
 
-//   res.send(products);
-// });
+  res.send(products);
+});
 
-// router.get('/get-by-id/:id', async (req, res, next) => {
-//   const product = await ProductModel.getById(req.params.id);
+router.get('/get-by-id/:id', async (req, res, next) => {
+  const product = await ProductModel.getById(req.params.id);
 
-//   res.send(product);
-// });
+  res.send(product);
+});
 
 router.post('/add-user', async (req, res) => {
   const { name, brand } = req.body;
