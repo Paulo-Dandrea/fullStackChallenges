@@ -9,3 +9,4 @@ const add = async (name, brand) =>
 //   getCollection('people')
 //     .then((people) => people.insertOne({ name, age, phoneNumbers }))
 //     .then((result) => ({ _id: result.insertedId, name, age, phoneNumbers }));
+module.exports = { add };
