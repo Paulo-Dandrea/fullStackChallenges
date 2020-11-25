@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 // const { insertCEP, getAllCachedCeps } = require('./Models/cep-model');
 const cepControllers = require('./Controllers/cepController');
 const app = express();

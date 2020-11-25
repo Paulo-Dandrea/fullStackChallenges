@@ -1,6 +1,6 @@
 // const { getAllCachedCeps } = require('../Models/cep-model');
-const axios = require('axios');
 const cepModel = require('../Models/cep-model');
+const cepService = require('../Service/cepService');
 
 const getAll = async (req, res, next) => {
   const { cep } = req.query;
@@ -13,19 +13,21 @@ const getAll = async (req, res, next) => {
 
 const insertCEP = async (req, res) => {
   const { cep } = req.query;
-  const cepData = await axios.get(
-    `http://cep.la/${cep}`,
-    {
-      headers: {
-        'Accept': 'application/json',
-      },
-    },
-  ).then((res) => res.data);
+  const hifenLessCEP = cep.replace('-', '');
+  if (!cepService.CEPisValid(hifenLessCEP)) {
+    return res.status(400).json({ message: 'Cep não válido' });
+  }
+  // is CEP already on our Mongo Cache?
+  const cachedCep = await cepModel.getCachedCepFromMongo(hifenLessCEP);
+  if (cachedCep) {
+    return res.status(200).json(cachedCep);
+  }
+  // If not in our DB, fetch document and put in our DB.
+  const cepData = await cepModel.getCepFromApi(hifenLessCEP);
   const { uf, cidade, bairro, logradouro } = cepData;
+  await cepModel.insertCEPonMongo(cep, uf, cidade, bairro, logradouro);
 
-  cepModel.insertCEPonMongo(cep, uf, cidade, bairro, logradouro);
-  
-//  console.log(cepData);
+  return res.status(200).json(cepData)
 };
 
 module.exports = {
