@@ -21,33 +21,22 @@ app.post('/users/:id/files', upload.single('file'), (req, res) => {
   res.status(201).json(req.file);
 });
 
-
 // Exercício 3 : Crie um servidor com Multer que possa receber um arquivo do tipo (.png ou .jpg); após isso, crie um script que leia uma imagem local e faça o upload para o servidor salvando essa imagem na pasta uploads.
 
-const storageEx3 = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, 'uploads/');
-  },
-  filename: (req, file, callback) => {
-    callback(null, file.originalname)
-  }
-  
-})
 
-const uploadEx3 = multer({storageEx3})
-
-app.post('/files/upload', uploadEx3.single('file'), (req, res) => {
-  console.log(req.file);
-  res.json(req.file)// estou nestta parte, conferir -----------------------------------------------------------------------------------------------------------------------------------------
-})
+app.post('/files/upload', upload.single('file'), (req, res) => {
+  res.json(req.file);
+});
 
 // Exercício 1 : Crie um endpoint na API usada durante a aula que receba um texto no body da requisição e escreva esse texto em forma de arquivo.
 
 app.post('/files/write', async (req, res) => {
   const { texto } = req.body;
 
+  const path = `./uploads/${req.file.originalname}`
+
   // console.log(req.body);
-  await fs.writeFile(`./uploads/${Date.now()}.txt`, texto, { flag: 'wx' });
+  await fs.writeFile(path, texto, { flag: 'wx' });
 
   res.status(200).send();
 });
@@ -57,10 +46,12 @@ app.post('/files/write', async (req, res) => {
 app.get('/files/read/:arquivo', async (req, res) => {
   const { arquivo } = req.params;
 
-  const fileTxt = await fs.readFile(`./uploads/${arquivo}`, 'utf-8')
+  const fileTxt = await fs.readFile(`./uploads/${arquivo}`, 'utf-8');
 
-  res.status(200).json({fileTxt});
-})
+  res.status(200).json({ fileTxt });
+});
+
+// Exercício 4 : Crie um servidor com Multer que receba múltiplos arquivos, e retorne, como JSON, o novo nome gerado pelo multer para cada arquivo.
 
 // tratativa para todos os erros serem pegos?
 
