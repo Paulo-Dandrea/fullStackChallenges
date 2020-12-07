@@ -24,16 +24,16 @@ app.get('/authors/:id', async (req, res) => {
 
 app.post('/authors', async (req, res) => {
   const { first_name, middle_name, last_name } = req.body;
-  if (!Author.isValid(first_name, middle_name, last_name)) {
-    console.log('entrou no author is valid');
-    return res.status(400).json({ message: 'Dados inválidos' });
+  // if (!Author.isValid(first_name, middle_name, last_name)) {
+  //   console.log('entrou no author is valid');
+  //   return res.status(400).json({ message: 'Dados inválidos' });
 
-    }
+  //   }
     console.log('creating?');
 
     await Author.create(first_name, middle_name, last_name); // Ele está escrevendo no banco mas...
 
-    res.status(201).status({message: "Autor criado com sucesso!"}); // ...acaba não entrando aqui
+    res.status(201).json({message: "Autor criado com sucesso!"}); // ...acaba não entrando aqui
 })
 
 const PORT = process.env.PORT || 3000;
