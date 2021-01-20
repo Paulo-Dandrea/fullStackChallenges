@@ -6,15 +6,15 @@ module.exports = {
       "Users",
       [
         {
-          fullName: "Leonardo",
+          fullname: "Leonardo",
           email: "leo@test.com",
         },
         {
-          fullName: "JEduardo",
+          fullname: "JEduardo",
           email: "edu@test.com",
         },
         {
-          fullName: "JfafaEduardo",
+          fullname: "JfafaEduardo",
           email: "edu@testafafa.com",
         },
       ],

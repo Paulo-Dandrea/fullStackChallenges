@@ -1,10 +1,14 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const router = require('./controllers/userControllerExample');
 
 // console.log(express());
 const app = express();
+app.use(bodyParser.json())
 
 app.use('/', router)
+
+
 
 app.listen(3000, () => console.log("to on"))
 
