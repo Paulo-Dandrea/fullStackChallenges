@@ -1,5 +1,7 @@
 "use strict";
 
+const { sequelize } = require('../models');
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     const UsersTable = queryInterface.createTable("Users", {
@@ -18,6 +20,16 @@ module.exports = {
         unique: true,
         type: Sequelize.STRING,
       },
+      createdAt : {
+        allowNull: false,
+        type: Sequelize.DATE(),
+        defaultValue: new Date(),
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE(),
+        defaultValue: new Date(),
+      } 
     });
 
     return UsersTable;
