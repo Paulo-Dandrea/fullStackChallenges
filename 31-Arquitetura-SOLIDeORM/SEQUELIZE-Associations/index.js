@@ -8,7 +8,7 @@ const app = express();
 app.get('/employees/:id', (req, res) => Employees
   .findAll({
     where: { employee_id: req.params.id },
-    include: [{ model: Addresses, as: 'addresses' }],
+    include: [{ model: Addresses, as: 'addresses', attributes: {exclude: ['address_id', 'employee_id']} }],
   })
   .then((employee) => {
     if (!employee.length) {
