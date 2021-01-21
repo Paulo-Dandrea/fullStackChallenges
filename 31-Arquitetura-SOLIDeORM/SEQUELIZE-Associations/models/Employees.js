@@ -1,19 +1,21 @@
-const createAddresses = (sequelize, DataTypes) => {
-  const Addresses = sequelize.define('Adress', {
-    address_id: { type: DataTypes.INTEGER, primaryKey: true},
-    city: DataTypes.STRING,
-    street: DataTypes.STRING,
-    number: DataTypes.INTEGER,
-    employee_id: { type: DataTypes.INTEGER, foreignKey: true}
-  }, {
+// models/Employees.js
+const createEmployees = (sequelize, DataTypes) => {
+  const Employees = sequelize.define('Employees', {
+    employee_id: { type: DataTypes.INTEGER, primaryKey: true },
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
+    age: DataTypes.INTEGER,
+  },
+  {
     timestamps: false,
-  })
+  });
 
-  Addresses.associate = (models) => {
-    Addresses.belongsTo(models.Employees, 
-      {foreignKey: 'employee_id', as: 'addresses'})
-  }
-  return Addresses;
-}
+  Employees.associate = (models) => {
+    Employees.hasOne(models.Addresses,
+      { foreignKey: 'employee_id', as: 'addresses' });
+  };
 
-module.exports = createAddresses;
+  return Employees;
+};
+
+module.exports = createEmployees;
