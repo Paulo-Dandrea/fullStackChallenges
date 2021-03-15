@@ -10,6 +10,7 @@ def stars_square(sizeNumber):
         print("*")
         index += 1
 
+
 stars_square(5)
 stars_square(10)
 stars_square(25)
