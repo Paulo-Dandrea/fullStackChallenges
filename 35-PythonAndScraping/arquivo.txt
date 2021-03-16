@@ -1,7 +1,5 @@
-nome idade
-Maria 45
-Miguel 33
-Túlio 22
-ALBERTO 34
-Betina 22
-João 42
+Olá
+mundo
+belo
+do
+Python
