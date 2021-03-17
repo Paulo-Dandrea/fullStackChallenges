@@ -1,7 +1,0 @@
-mosquito
-cobra
-aranha
-porco
-galinha
-tatu
-ave

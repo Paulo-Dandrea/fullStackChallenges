@@ -3,6 +3,14 @@ import csv
 
 books = [json.loads(line) for line in open("books.json", "r")]
 
+# filtered_books = {"Python": 0, "Java": 0, "PHP": 0}
+
+# for book in books:
+#     if "Python" in book["categories"]:
+#         filtered_books["Python"] = (filtered_books["Python"] or 0) + 1
+
+# print(filtered_books)
+
 
 def category_percentage(category, books):
     total_number_of_books = len(books)
@@ -19,12 +27,10 @@ percentage_java_books = category_percentage("Java", books)
 
 percentage_php_books = category_percentage("PHP", books)
 
-with open('categories_and_percentages.csv', 'w') as file:
+with open("categories_and_percentages.csv", "w") as file:
     writer = csv.writer(file)
-    header = [
-      'categoria',
-      'porcentagem'
-    ]
+    header = ["categoria", "porcentagem"]
+
     writer.writerow(header)
     writer.writerow(percentage_python_books)
     writer.writerow(percentage_java_books)
