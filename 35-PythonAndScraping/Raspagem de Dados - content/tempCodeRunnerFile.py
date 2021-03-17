@@ -1,9 +1,12 @@
+from parsel import Selector
+import requests
 
-try:
-    # recurso demora muito a responder
-    response = requests.get("http://httpbin.org/delay/10", timeout=2)
-except requests.ReadTimeout:
-    # vamos fazer uma nova requisição
-    response = requests.get("http://httpbin.org/delay/1", timeout=2)
-finally:
-    print(response.status_code)
+response = requests.get("http://books.toscrape.com/")
+selector = Selector(text=response.text)
+
+# Combinando tudo podemos buscar os produtos
+# em em seguida buscar os valores individualmente
+for product in selector.css(".product_pod"):
+    title = product.css("h3 a::attr(title)").get()
+    price = product.css(".price_color::text").get()
+    print(title, price)
