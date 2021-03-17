@@ -1,12 +1,12 @@
-from parsel import Selector
-import requests
 
-response = requests.get("http://books.toscrape.com/")
-selector = Selector(text=response.text)
 
-# Combinando tudo podemos buscar os produtos
-# em em seguida buscar os valores individualmente
-for product in selector.css(".product_pod"):
-    title = product.css("h3 a::attr(title)").get()
-    price = product.css(".price_color::text").get()
-    print(title, price)
+from pymongo import MongoClient
+
+client = MongoClient()
+db = client.catalogue
+# busca um documento da coleção, sem filtros
+print(db.books.find_one())
+# busca utilizando filtros
+for book in db.books.find({"title": {"$regex": "t"}}):
+    print(book["title"])
+client.close()  # fecha a conexão com o banco de dados
