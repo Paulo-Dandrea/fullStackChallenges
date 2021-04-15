@@ -1,24 +1,29 @@
 class HashMap:
     def __init__(self):
-        self._buckets = [None for i in range(10)]
+        self._buckets = [[] for i in range(10)]
 
     def get_address(self, id_num):
         return id_num % 10
 
     def insert(self, employee):
         address = self.get_address(employee['id_num'])
-        self._buckets[address] = employee
+        self._buckets[address].append(employee)
 
     def get_value(self, id_num):
         address = self.get_address(id_num)
-        return self._buckets[address]['name']
+        for item in self._buckets[address]:
+            if item.id_num == id_num:
+                return item.name
+            else:
+                return None
 
     def has(self, id_num):
         address = self.get_address(id_num)
         return self._buckets[address] is not None
     
     def update_value(self, id_num, new_name):
-    # ...
+        address = self.get_address(id_num)
+        self._buckets[address] = {'id_num': id_num, 'name': new_name}
     
     def __repr__(self):
       print('[') 
@@ -40,6 +45,9 @@ hs = HashMap()
 for em in employees_objects:
   hs.insert(em)
 
-# repr(hs) // Para ver o array com os nones ou espaços usados
-
 print(hs.get_value(23))
+
+hs.update_value(23, 'hasafada')
+
+repr(hs)
+# print(hs.get_value(23))
